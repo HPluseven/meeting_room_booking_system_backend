@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  fe-app:
+    image: fe-container:first
+    ports:
+      - 80:80
+    depends_on:
+      - nest-app
+    restart: always
+    networks:
+      - common-network
   nest-app:
     build:
       context: ./
@@ -7,14 +16,14 @@ services:
     depends_on:
       - mysql-container
       - redis-container
-    ports:
-      - 3005:3005
+    # ports:
+    #   - 3005:3005
     networks:
       - common-network
   mysql-container:
     image: mysql
     volumes:
-      - /Users/seven/studyRepos/mysql:/var/lib/mysql
+      - /Users/seven/studyRepos/meeting_room_booking_system/mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: meeting_room_booking_system
       MYSQL_ROOT_PASSWORD: seven
@@ -23,7 +32,7 @@ services:
   redis-container:
     image: redis
     volumes:
-      - /Users/seven/studyRepos/redis:/data
+      - /Users/seven/studyRepos/meeting_room_booking_system/redis:/data
     networks:
       - common-network
 networks:
