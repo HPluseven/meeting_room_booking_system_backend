@@ -16,7 +16,7 @@ COPY . .
 RUN pnpm run build
 
 # production stage
-FROM node:22.6.0-alpine as production-stage
+FROM node:18.20.0-alpine as production-stage
 
 COPY --from=build-stage /app/dist /app
 COPY --from=build-stage /app/package.json /app/package.json
