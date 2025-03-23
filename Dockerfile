@@ -1,11 +1,11 @@
-FROM node:22.6.0-alpine as build-stage
+FROM node:18.20.0-alpine as build-stage
 
 WORKDIR /app
 
 # 安装 pnpm@10
 RUN npm install pnpm@10 -g
 
-COPY package.json .
+COPY package.json pnpm-lock.yaml ./
 
 RUN npm config set registry https://registry.npmmirror.com/
 
