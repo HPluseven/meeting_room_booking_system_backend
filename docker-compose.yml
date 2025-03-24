@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   fe-app:
-    image: fe-container:first
+    image: crpi-b7tlx04e4acor5lg.cn-shenzhen.personal.cr.aliyuncs.com/seven_namespace/seven_repo:aaa
     ports:
       - 80:80
     depends_on:
