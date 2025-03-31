@@ -28,11 +28,8 @@ RUN npm install pnpm@10 -g
 
 RUN npm config set registry https://registry.npmmirror.com/
 
-RUN pnpm install
+RUN pnpm install --production
 
 EXPOSE 3005
-
-RUN pnpm run migration:create src/migrations/data
-RUN pnpm run migration:run
 
 CMD ["node", "/app/main.js"]
