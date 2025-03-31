@@ -14,6 +14,8 @@ RUN pnpm install
 COPY . .
 
 RUN pnpm run build
+RUN pnpm run migration:create src/migrations/data
+RUN pnpm run migration:run
 
 # production stage
 FROM node:18.20.0-alpine as production-stage
