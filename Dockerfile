@@ -28,7 +28,7 @@ RUN npm install pnpm@10 -g
 
 RUN npm config set registry https://registry.npmmirror.com/
 
-RUN pnpm install --production
+RUN pnpm install
 
 EXPOSE 3005
 

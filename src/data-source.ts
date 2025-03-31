@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-import { config } from 'dotenv';
 
 import { Permission } from './user/entities/permission.entity';
 import { Role } from './user/entities/role.entity';
@@ -7,17 +6,23 @@ import { User } from './user/entities/user.entity';
 import { MeetingRoom } from './meeting-room/entities/meeting-room.entity';
 import { Booking } from './booking/entities/booking.entity';
 
-config({ path: 'src/.env-migration' });
+const envObj = {
+  mysql_server_host: 'mysql-container',
+  mysql_server_port: '3306',
+  mysql_server_username: 'root',
+  mysql_server_password: 'seven',
+  mysql_server_database: 'meeting_room_booking_system',
+};
 
-console.log(process.env);
+console.log();
 
 export default new DataSource({
   type: 'mysql',
-  host: `${process.env.mysql_server_host}`,
-  port: +`${process.env.mysql_server_port}`,
-  username: `${process.env.mysql_server_username}`,
-  password: `${process.env.mysql_server_password}`,
-  database: `${process.env.mysql_server_database}`,
+  host: `${envObj.mysql_server_host}`,
+  port: +`${envObj.mysql_server_port}`,
+  username: `${envObj.mysql_server_username}`,
+  password: `${envObj.mysql_server_password}`,
+  database: `${envObj.mysql_server_database}`,
   synchronize: false,
   logging: true,
   entities: [User, Role, Permission, MeetingRoom, Booking],
